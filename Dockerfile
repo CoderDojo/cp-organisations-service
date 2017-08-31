@@ -5,9 +5,9 @@ RUN apk add --update git build-base python postgresql-client && \
     mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-RUN npm install && \
-    npm install cp-translations@"$DEP_VERSION" && \
+RUN yarn && \
+    yarn add cp-translations@"$DEP_VERSION" && \
     apk del build-base python && \
     rm -rf /tmp/* /root/.npm /root/.node-gyp
 EXPOSE 10309
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
