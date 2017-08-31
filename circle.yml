@@ -8,10 +8,10 @@ machine:
     LANG: en_US.utf8
 dependencies:
   override:
-    - npm install
+    - yarn
 test:
   override:
-    - npm run test
+    - yarn test
 deployment:
   production:
     branch: master
