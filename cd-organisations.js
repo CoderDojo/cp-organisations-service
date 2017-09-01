@@ -14,20 +14,17 @@ function cdOrganisations() {
   const plugin = 'cd-organisations';
   const senecaActP = promisify(seneca.act, { context: seneca });
 
-  function keyCb(entityName, key) {
-    return function (args) {
-      return senecaActP(
-        _.extend(
-          {
-            role: plugin,
-            entity: entityName,
-            cmd: key,
-          },
-          args,
-        ),
-      );
-    };
-  }
+  const keyCb = (entityName, key) => args =>
+    senecaActP(
+      _.extend(
+        {
+          role: plugin,
+          entity: entityName,
+          cmd: key,
+        },
+        args,
+      ),
+    );
 
   // Load primitives
   [org, userOrg].forEach((entity) => {
@@ -53,19 +50,20 @@ function cdOrganisations() {
   ctrls.org = orgController.bind(seneca)();
   ctrls.userOrg = userOrgController.bind(seneca)();
   _.each(ctrls, (ctrl, entity) => {
-    for (const key in ctrl.acts) {
+    ctrl.acts.forEach(({ validation, cb }, key) => {
       const act = _.extend(
         {
           role: plugin,
           ctrl: entity,
           cmd: key,
         },
-        ctrl.acts[key].validation,
+        validation,
       );
-      seneca.add(act, ctrl.acts[key].cb);
-      seneca.log.info('added act', act, { joi$: ctrl.acts[key].validation });
-      // No promise are added, we shouldn't have to reuse the same function twice. If we do, create an utility
-    }
+      seneca.add(act, cb);
+      seneca.log.info('added act', act, { joi$: validation });
+      // No promise are added, we shouldn't have to reuse the same function twice.
+      // If we do, create an utility
+    });
   });
 
   // Load utilities

@@ -12,11 +12,13 @@ module.exports = function migrate(cb) {
     password: config['postgresql-store'].password,
     newline: 'LF',
   });
-  postgrator.runQuery('CREATE SCHEMA IF NOT EXISTS "cp_organisations_schema";SET search_path TO "cp_organisations_schema";',
-    (err, res) => {
+  postgrator.runQuery(
+    'CREATE SCHEMA IF NOT EXISTS "cp_organisations_schema";SET search_path TO "cp_organisations_schema";',
+    (err) => {
       if (err) return cb(err);
       postgrator.migrate('max', (err, migrations) => {
         postgrator.endConnection(() => cb(err, migrations));
       });
-    });
+    },
+  );
 };

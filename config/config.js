@@ -1,7 +1,7 @@
 const decamelize = require('decamelize');
 const camelize = require('camelcase');
 
-module.exports = function (options) {
+module.exports = (options) => {
   function pgConfig() {
     return {
       name: process.env.POSTGRES_NAME,
