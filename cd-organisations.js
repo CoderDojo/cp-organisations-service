@@ -14,17 +14,19 @@ function cdOrganisations() {
   const plugin = 'cd-organisations';
   const senecaActP = promisify(seneca.act, { context: seneca });
 
-  const keyCb = (entityName, key) => args =>
-    senecaActP(
-      _.extend(
-        {
-          role: plugin,
-          entity: entityName,
-          cmd: key,
-        },
-        args,
-      ),
-    );
+  function keyCb(entityName, key) {
+    return args =>
+      senecaActP(
+        _.extend(
+          {
+            role: plugin,
+            entity: entityName,
+            cmd: key,
+          },
+          args,
+        ),
+      );
+  }
 
   // Load primitives
   [org, userOrg].forEach((entity) => {

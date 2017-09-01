@@ -12,10 +12,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "keywords": [
-    "organisation",
-    "coderdojo"
-  ],
+  "keywords": ["organisation", "coderdojo"],
   "author": "Coderdojo",
   "license": "ISC",
   "devDependencies": {
@@ -23,6 +20,7 @@
     "code": "^1.5.0",
     "eslint": "^4.5.0",
     "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-chai-friendly": "^0.4.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
@@ -40,7 +38,6 @@
     "cp-logs-lib": "git://github.com/CoderDojo/cp-logs-lib#1.1.0",
     "cp-permissions-plugin": "git://github.com/CoderDojo/cp-permissions-plugin#1.0.4",
     "decamelize": "^1.2.0",
-    "eslint-plugin-chai-friendly": "^0.4.0",
     "glob": "^7.1.1",
     "heapdump": "^0.3.7",
     "joi": "^6.1",
