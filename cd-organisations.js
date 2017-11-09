@@ -69,7 +69,7 @@ function cdOrganisations() {
   });
 
   // Load utilities
-  // -> none atm
+  seneca.add({ role: plugin, cmd: 'ping' }, require('./lib/ping'));
 
   return {
     name: plugin,
