@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const service = 'cp-organisations-service';
 const store = require('seneca-postgres-store');
 const util = require('util');
@@ -5,6 +6,8 @@ const dgram = require('dgram');
 const config = require('./config/config.js')();
 const seneca = require('./imports')(config);
 const network = require('./network');
+
+if (process.env.NEW_RELIC_ENABLED === 'true') require('newrelic'); // eslint-disable-line global-require
 
 seneca.use(store, config['postgresql-store']);
 
