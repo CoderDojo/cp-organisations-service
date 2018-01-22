@@ -15,7 +15,7 @@ seneca.use(store, config['postgresql-store']);
 if (!isUndefined(newrelic)) {
   seneca.use(senecaNR, {
     newrelic,
-    roles: ['cd-oranisations'],
+    roles: ['cd-organisations'],
     filter(p) {
       p.user = p.user ? p.user.id : undefined;
       p.login = p.login ? p.login.id : undefined;
