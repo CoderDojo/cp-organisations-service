@@ -7,5 +7,13 @@ module.exports = (seneca) => {
       role: 'cd-profiles',
       cmd: '*',
     },
+  }).client({
+    type: 'web',
+    host: process.env.CD_USERS || 'localhost',
+    port: 10303,
+    pin: {
+      role: 'cd-users',
+      cmd: '*',
+    },
   });
 };
