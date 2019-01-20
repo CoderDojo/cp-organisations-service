@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM node:carbon-alpine
 MAINTAINER butlerx <butlerx@notthe.cloud>
 ENV NODE_ENV=production
 RUN apk add --update git build-base python postgresql-client && \
